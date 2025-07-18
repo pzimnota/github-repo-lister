@@ -14,7 +14,7 @@ A simple Spring Boot application that fetches and lists public GitHub repositori
 
 - Java 21
 - Spring Boot 3.5
-- REST API consumption with RestTemplate
+- Spring Web (RestTemplate) for REST API consumption
 - JUnit 5 for integration testing
 
 ## Setup
@@ -31,9 +31,9 @@ Inside the file src/main/resources/application.properties fill:
 ```properties
 github.token=your_github_token_here
 ```
-Alternatively, you can set the environment variable or configure it as a system variable in IntelliJ.
+Alternatively, you can set the environment variable named ```GITHUB_TOKEN```, or configure it as a system variable in IntelliJ.
 
-You can generate a personal access token on GitHub under Settings → Developer settings → Personal access tokens.
+You can generate a personal access token [here](https://github.com/settings/tokens).
 
 3. **Build and run the application**
 Using Maven:
@@ -57,6 +57,27 @@ http://localhost:8080/repositories/octocat
 ```
 Replace ```octocat``` with any GitHub username.
 
+The API responds with JSON formatted like:
+```json
+{
+    "Repository Name": "Hello-World",
+    "Owner Login": "octocat",
+    "branches": [
+      {
+        "name": "master",
+        "last commit sha": "7fd1a60b01f91b314f59955a4e4d4e80d8edf11d"
+      },
+      {
+        "name": "octocat-patch-1",
+        "last commit sha": "b1b3f9723831141a31a1a7252a213e216ea76e56"
+      },
+      {
+        "name": "test",
+        "last commit sha": "b3cbd5bbd7e81436d2eee04537ea2b4c0cad4cdf"
+      }
+    ]
+  },
+```
 ## Testing
 Run integration tests with:
 
