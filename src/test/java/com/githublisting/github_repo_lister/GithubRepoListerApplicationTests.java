@@ -28,25 +28,25 @@ class GithubRepoListerApplicationTests {
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
         // then
-		String body = response.getBody();
-		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        String body = response.getBody();
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			JsonNode root = objectMapper.readTree(body);
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            JsonNode root = objectMapper.readTree(body);
 
-			JsonNode firstRepo = root.get(0);
-			assertThat(firstRepo.get("Repository Name").asText()).isEqualTo("Hello-World");
-			assertThat(firstRepo.get("Owner Login").get("login").asText()).isNotBlank();
-			JsonNode branches = firstRepo.get("branches");
-			assertThat(branches).isNotNull();
-			assertThat(branches.isArray()).isTrue();
-			assertThat(branches.size()).isGreaterThan(0);
-			JsonNode firstBranch = branches.get(0);
-			assertThat(firstBranch.get("commit").get("sha").asText()).isNotBlank();
-		} catch (JsonProcessingException e) {
-			throw new RuntimeException(e);
-		}
+            JsonNode firstRepo = root.get(0);
+            assertThat(firstRepo.path("Repository Name").asText()).isEqualTo("git-consortium");
+            assertThat(firstRepo.path("Owner Login").asText()).isEqualTo("octocat");
+            JsonNode branches = firstRepo.path("branches");
+            assertThat(branches).isNotNull();
+            assertThat(branches.isArray()).isTrue();
+            assertThat(branches.size()).isGreaterThan(0);
+            JsonNode firstBranch = branches.get(0);
+            assertThat(firstBranch.path("last commit sha").asText()).isNotBlank();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }

@@ -5,8 +5,6 @@ import com.githublisting.github_repo_lister.model.Branch;
 import com.githublisting.github_repo_lister.model.Repository;
 import com.githublisting.github_repo_lister.model.dto.BranchDTO;
 import com.githublisting.github_repo_lister.model.dto.RepositoryDTO;
-import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -16,9 +14,6 @@ import java.util.function.Predicate;
 
 @Service
 public class GithubService {
-
-    @Value("${github.token}")
-    private String githubToken;
 
     private final RestTemplate restTemplate;
 
