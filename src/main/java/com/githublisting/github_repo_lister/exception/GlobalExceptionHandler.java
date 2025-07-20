@@ -5,18 +5,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, Object> handleUserNotFound(UserNotFoundException exception){
-        Map<String, Object> errorResponse = new LinkedHashMap<>();
-        errorResponse.put("status", HttpStatus.NOT_FOUND.value());
-        errorResponse.put("message", exception.getMessage());
-        return errorResponse;
+    public UserNotFoundDTO handleUserNotFound(UserNotFoundException exception) {
+        return new UserNotFoundDTO(HttpStatus.NOT_FOUND.value(), exception.getMessage());
     }
 }

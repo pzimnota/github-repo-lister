@@ -1,5 +1,4 @@
 package com.githublisting.github_repo_lister.model;
 
-public record Branch(String name, Commit commit) {
-
+public record Owner(String login) {
 }

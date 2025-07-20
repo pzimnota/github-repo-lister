@@ -1,9 +1,11 @@
 package com.githublisting.github_repo_lister.controller;
 
-import com.githublisting.github_repo_lister.model.dto.RepositoryResponse;
+import com.githublisting.github_repo_lister.model.dto.RepositoryDTO;
 import com.githublisting.github_repo_lister.service.GithubService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -18,8 +20,7 @@ public class GithubRepositoryController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<List<RepositoryResponse>> getUserRepositories(@PathVariable String username){
-        List<RepositoryResponse> repositories = githubService.fetchUserRepositories(username);
-        return ResponseEntity.ok(repositories);
+    public List<RepositoryDTO> getUserRepositories(@PathVariable String username) {
+        return githubService.fetchUserRepositories(username);
     }
 }
