@@ -85,7 +85,12 @@ Replace `octocat` with any GitHub username.
 
 ## 🧪 Running Tests
 
-Edit in progress
+Integration tests are powered by [WireMock](https://wiremock.org/).  
+To run tests:
+
+```bash
+./mvnw test
+```
 
 ## 📌 Notes
 
