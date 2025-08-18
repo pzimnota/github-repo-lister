@@ -1,10 +1,12 @@
 # Github Repo Lister
 
-A simple Spring Boot application that fetches and lists public GitHub repositories for a given user, **excluding forks**. For each repository, it shows:
+A simple Spring Boot application that fetches and lists public GitHub repositories for a given user, excluding forks. For each repository, it shows:
 
 - Repository name  
 - Owner login  
 - Branches with the latest commit SHA  
+
+---
 
 ## ✅ Features
 
